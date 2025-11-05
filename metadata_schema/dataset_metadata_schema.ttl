@@ -1,0 +1,48 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix data: <https://w3id.org/FAIR-FIFA-Group15/data#> .
+
+data:FIFA_DatasetShape
+    a sh:NodeShape ;
+    sh:targetClass schema:Dataset ;
+    sh:property [
+        sh:path dcterms:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Dataset must have exactly one title."@en ;
+    ] ;
+    sh:property [
+        sh:path dcterms:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "Dataset must include a textual description."@en ;
+    ] ;
+    sh:property [
+        sh:path dcterms:creator ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:license ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:created ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:language ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:distribution ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:message "Dataset must link to at least one Distribution."@en ;
+    ] .

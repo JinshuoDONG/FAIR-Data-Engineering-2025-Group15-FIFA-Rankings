@@ -1,0 +1,44 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix data: <https://w3id.org/FAIR-FIFA-Group15/data#> .
+
+data:FIFA_DistributionShape
+    a sh:NodeShape ;
+    sh:targetClass schema:Distribution ;
+    sh:property [
+        sh:path dcterms:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:encodingFormat ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:contentUrl ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:publisher ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path dcterms:created ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:license ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+    ] .

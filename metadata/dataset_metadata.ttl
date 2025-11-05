@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema:  <https://schema.org/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix data:    <https://w3id.org/FAIR-FIFA-Group15/data#> .
+
+data:FIFA_Ranking_Metadata a schema:Dataset ;
+    dcterms:title "FAIRified FIFA Men’s International Soccer Rankings Dataset"@en ;
+    dcterms:description "This dataset contains the FAIRified version of FIFA Men’s International Soccer Team Rankings from 1993 to 2025. It was created by Group 15 for the FAIR Data Engineering 2025 course at the University of Twente. The dataset includes ranking position, total points, confederation, and date of publication for each national team, linked to DBpedia resources."@en ;
+    dcterms:creator "Tadhg Fitzgerald" ;
+    dcterms:contributor "Group 15 – University of Twente" ;
+    dcterms:publisher "University of Twente, FAIR Data Engineering 2025" ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:language "en" ;
+    schema:temporalCoverage "1993–2025" ;
+    schema:spatialCoverage "Global" ;
+    dcterms:format "text/turtle" ;
+    schema:distribution data:Distribution_Original , data:Distribution_FAIR ;
+    dcterms:conformsTo <https://schema.org/Dataset> , <http://purl.org/dc/terms/> .

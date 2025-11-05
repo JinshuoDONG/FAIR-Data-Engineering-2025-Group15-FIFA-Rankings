@@ -1,0 +1,14 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema:  <https://schema.org/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix data:    <https://w3id.org/FAIR-FIFA-Group15/data#> .
+
+data:Distribution_Original a schema:Distribution ;
+    dcterms:title "Original FIFA Rankings CSV Dataset"@en ;
+    dcterms:description "The original dataset as published on Kaggle, containing FIFA Men’s International Soccer Team Rankings from 1993 to 2025 in CSV format. This version was used as input for FAIRification."@en ;
+    schema:encodingFormat "text/csv" ;
+    schema:contentUrl <https://github.com/JinshuoDONG/FAIR-Data-Engineering-2025-Group15-FIFA-Rankings/raw/main/data/fifa_ranking_fair.ttl> ;
+    schema:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:publisher "University of Twente, FAIR Data Engineering 2025" ;
+    dcterms:created "2025-11-05"^^xsd:date ;
+    schema:identifier "https://w3id.org/FAIR-FIFA-Group15/data#Distribution_Original" .

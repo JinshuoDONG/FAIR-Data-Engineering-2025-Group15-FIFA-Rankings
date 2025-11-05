@@ -1,0 +1,14 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema:  <https://schema.org/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix data:    <https://w3id.org/FAIR-FIFA-Group15/data#> .
+
+data:Distribution_FAIR a schema:Distribution ;
+    dcterms:title "FAIRified FIFA Rankings RDF Dataset"@en ;
+    dcterms:description "The FAIRified version of the FIFA Men’s International Soccer Team Rankings dataset. It is represented in RDF (Turtle) format, with persistent W3ID identifiers and semantic alignment to schema.org and dcterms vocabularies. Each team is linked to DBpedia."@en ;
+    schema:encodingFormat "text/turtle" ;
+    schema:contentUrl <https://github.com/JinshuoDONG/FAIR-Data-Engineering-2025-Group15-FIFA-Rankings/raw/main/data/fifa_ranking_fair.ttl> ;
+    schema:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:publisher "University of Twente, FAIR Data Engineering 2025" ;
+    dcterms:created "2025-11-05"^^xsd:date ;
+    schema:identifier "https://w3id.org/FAIR-FIFA-Group15/data#Distribution_FAIR" .

@@ -1,0 +1,154 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema:  <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ont:     <https://w3id.org/FAIR-FIFA-Group15/ont#> .
+
+#################################################################
+# Ontology metadata
+#################################################################
+
+<https://w3id.org/FAIR-FIFA-Group15/ont>
+    a owl:Ontology ;
+    dcterms:title "FAIR FIFA Ontology – Group 15" ;
+    dcterms:creator "Group 15, FAIR Data Engineering 2025 (University of Twente)" ;
+    dcterms:description "Ontology describing entities and relationships used in the FAIRification of the FIFA Men's International Soccer Rankings dataset." ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> ;
+    dcterms:created "2025-11-05"^^xsd:date .
+
+#################################################################
+# Classes
+#################################################################
+
+ex:RankingRecord a owl:Class ;
+    rdfs:label "Ranking Record"@en ;
+    rdfs:comment "Represents the ranking information of a national football team on a specific date."@en .
+
+schema:SportsTeam a owl:Class ;
+    rdfs:label "National Team"@en ;
+    rdfs:comment "Represents a national football team as defined by FIFA and documented in DBpedia."@en .
+
+ex:Confederation a owl:Class ;
+    rdfs:label "Confederation"@en ;
+    rdfs:comment "Represents a continental football organization such as UEFA or CONMEBOL."@en .
+
+#################################################################
+# Object Properties (relationships between entities)
+#################################################################
+
+schema:forTeam a owl:ObjectProperty ;
+    rdfs:label "for team"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range schema:SportsTeam ;
+    rdfs:comment "Links a ranking record to the corresponding football team (using DBpedia link)."@en .
+
+ex:belongsToConfederation a owl:ObjectProperty ;
+    rdfs:label "belongs to confederation"@en ;
+    rdfs:domain schema:SportsTeam ;
+    rdfs:range ex:Confederation ;
+    rdfs:comment "Links a team to its continental confederation."@en .
+
+#################################################################
+# Data Properties (attributes of the ranking record)
+#################################################################
+
+schema:rankingPosition a owl:DatatypeProperty ;
+    rdfs:label "ranking position"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The numerical rank of the team."@en .
+
+schema:ratingValue a owl:DatatypeProperty ;
+    rdfs:label "rating value"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The total points assigned by FIFA."@en .
+
+schema:datePublished a owl:DatatypeProperty ;
+    rdfs:label "date published"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range xsd:date ;
+    rdfs:comment "The publication date of the ranking."@en .
+
+ex:previousPoints a owl:DatatypeProperty ;
+    rdfs:label "previous points"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "The team's previous total points before the current ranking update."@en .
+
+ex:positionChange a owl:DatatypeProperty ;
+    rdfs:label "position change"@en ;
+    rdfs:domain ex:RankingRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The change in position compared to the previous ranking."@en .
+
+#################################################################
+# Example Instances
+#################################################################
+
+### Confederations
+ex:UEFA a ex:Confederation ;
+    rdfs:label "UEFA"@en ;
+    rdfs:comment "Union of European Football Associations"@en .
+
+ex:CONMEBOL a ex:Confederation ;
+    rdfs:label "CONMEBOL"@en ;
+    rdfs:comment "South American Football Confederation"@en .
+
+#################################################################
+# Example Teams (linked to DBpedia)
+#################################################################
+
+<http://dbpedia.org/resource/Brazil_national_football_team> a schema:SportsTeam ;
+    rdfs:label "Brazil National Football Team"@en ;
+    ex:belongsToConfederation ex:CONMEBOL .
+
+<http://dbpedia.org/resource/France_national_football_team> a schema:SportsTeam ;
+    rdfs:label "France National Football Team"@en ;
+    ex:belongsToConfederation ex:UEFA .
+
+<http://dbpedia.org/resource/Argentina_national_football_team> a schema:SportsTeam ;
+    rdfs:label "Argentina National Football Team"@en ;
+    ex:belongsToConfederation ex:CONMEBOL .
+
+<http://dbpedia.org/resource/Netherlands_national_football_team> a schema:SportsTeam ;
+    rdfs:label "Netherlands National Football Team"@en ;
+    ex:belongsToConfederation ex:UEFA .
+
+#################################################################
+# Example Ranking Records (linked via schema:forTeam)
+#################################################################
+
+ex:Brazil_2023_10_01 a ex:RankingRecord ;
+    schema:forTeam <http://dbpedia.org/resource/Brazil_national_football_team> ;
+    schema:rankingPosition 1 ;
+    schema:ratingValue 1850.23 ;
+    ex:previousPoints 1842.15 ;
+    ex:positionChange 0 ;
+    schema:datePublished "2023-10-01"^^xsd:date .
+
+ex:France_2023_10_01 a ex:RankingRecord ;
+    schema:forTeam <http://dbpedia.org/resource/France_national_football_team> ;
+    schema:rankingPosition 2 ;
+    schema:ratingValue 1838.45 ;
+    ex:previousPoints 1823.42 ;
+    ex:positionChange 0 ;
+    schema:datePublished "2023-10-01"^^xsd:date .
+
+ex:Argentina_2023_10_01 a ex:RankingRecord ;
+    schema:forTeam <http://dbpedia.org/resource/Argentina_national_football_team> ;
+    schema:rankingPosition 3 ;
+    schema:ratingValue 1821.50 ;
+    ex:previousPoints 1810.10 ;
+    ex:positionChange 0 ;
+    schema:datePublished "2023-10-01"^^xsd:date .
+
+ex:Netherlands_2023_10_01 a ex:RankingRecord ;
+    schema:forTeam <http://dbpedia.org/resource/Netherlands_national_football_team> ;
+    schema:rankingPosition 4 ;
+    schema:ratingValue 1792.90 ;
+    ex:previousPoints 1780.60 ;
+    ex:positionChange 1 ;
+    schema:datePublished "2023-10-01"^^xsd:date .
